@@ -48,7 +48,4 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  database: subscript-pic_production
-  username: subscript-pic
-  password: <%= ENV['SUBSCRIPT-PIC_DATABASE_PASSWORD'] %>
+    url: <%= ENV['DATABASE_URL'] %>
