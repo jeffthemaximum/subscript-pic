@@ -7,11 +7,11 @@ import { compose } from 'redux'
 import { Provider } from 'react-redux'
 import createHistory from 'history/createBrowserHistory'
 
-import rootReducer from '../reducers';
-import rootSaga from '../sagas'
+import rootReducer from './reducers';
+import rootSaga from './sagas'
 
-import Home from './Home'
-import NotFound from './NotFound'
+import Home from './components/Home'
+import NotFound from './components/NotFound'
 
 
 const sagaMiddleware = createSagaMiddleware()
