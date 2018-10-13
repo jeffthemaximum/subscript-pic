@@ -11,6 +11,7 @@ import rootReducer from './reducers';
 import rootSaga from './sagas'
 
 import Home from './components/Home'
+import Landing from './components/Landing'
 import NotFound from './components/NotFound'
 
 
@@ -34,6 +35,7 @@ class App extends Component {
       <Provider store={store}>
         <Router>
           <Switch>
+            <Route path='/landing' exact component={Landing} />
             <Route path='/' exact component={Home} />
             <Route component={NotFound} />
           </Switch>
