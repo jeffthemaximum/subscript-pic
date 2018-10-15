@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import socialPlatforms from '../ducks/socialPlatforms'
 
-import logo from '../assets/logo.svg';
+import logo from '../assets/logo.svg'
 
-import './Home.css';
+import './Home.css'
 
 const { actions: { fetchSocialPlatforms } } = socialPlatforms
 
@@ -43,7 +43,7 @@ class Home extends Component {
           </a>
         </header>
       </div>
-    );
+    )
   }
 }
 
