@@ -12,7 +12,9 @@ import rootSaga from './sagas'
 
 import Home from './components/Home'
 import Landing from './components/Landing'
+import Login from './components/Login'
 import NotFound from './components/NotFound'
+import PrivateRoute from './components/PrivateRoute'
 
 
 const sagaMiddleware = createSagaMiddleware()
@@ -36,7 +38,8 @@ class App extends Component {
         <Router>
           <Switch>
             <Route path='/landing' exact component={Landing} />
-            <Route path='/' exact component={Home} />
+            <Route path='/login' exact component={Login} />
+            <PrivateRoute path='/' exact component={Home} />
             <Route component={NotFound} />
           </Switch>
         </Router>
