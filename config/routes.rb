@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     devise_for :users
     resources :social_accounts
     resources :social_platforms
+    post '/auth/facebook', to: 'auth#facebook'
   end
 
   get '*path', to: "application#fallback_index_html", constraints: ->(request) do

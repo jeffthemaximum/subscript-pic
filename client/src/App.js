@@ -10,12 +10,10 @@ import createHistory from 'history/createBrowserHistory'
 import rootReducer from './reducers';
 import rootSaga from './sagas'
 
-import Home from './components/Home'
 import Landing from './components/Landing'
-import Login from './components/Login'
 import NotFound from './components/NotFound'
 import PrivateRoute from './components/PrivateRoute'
-
+import SignupComponent from './components/SignupComponent'
 
 const sagaMiddleware = createSagaMiddleware()
 const history = createHistory()
@@ -37,9 +35,8 @@ class App extends Component {
       <Provider store={store}>
         <Router>
           <Switch>
-            <Route path='/landing' exact component={Landing} />
-            <Route path='/login' exact component={Login} />
-            <PrivateRoute path='/' exact component={Home} />
+            <Route path='/signup' extact component={SignupComponent} />
+            <PrivateRoute path='/' exact component={Landing} />
             <Route component={NotFound} />
           </Switch>
         </Router>

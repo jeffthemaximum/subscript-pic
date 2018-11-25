@@ -9,3 +9,10 @@ export const createUser = (name, email, password, passwordConfirmation) => {
     passwordConfirmation
   }
 }
+
+export const authenticateFacebookUser = (facebookResponse) => {
+  return {
+    type: types.AUTHENTICATE_FACEBOOK,
+    facebookResponse
+  }
+}

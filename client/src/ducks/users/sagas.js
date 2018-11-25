@@ -3,8 +3,6 @@ import * as actionTypes from './actionTypes'
 import * as api from '../../services/api'
 
 function * createUser (action) {
-  yield put({ type: actionTypes.CREATE_REQUEST })
-
   const { name, email, password, passwordConfirmation } = action
 
   const response = yield call(
@@ -22,7 +20,23 @@ function * createUser (action) {
   }
 }
 
+function * authenticateFacebook (action) {
+  const { facebookResponse } = action
+
+  const response = yield call(
+    api.authenticateFacebookUser,
+    facebookResponse
+  )
+
+  if (response.error) {
+    yield put({ type: actionTypes.AUTHENTICATE_FACEBOOK_ERROR, code_status: response.error })
+  } else {
+    yield put({ type: actionTypes.AUTHENTICATE_FACEBOOK_SUCCESS, response })
+  }
+}
+
 const watchers = [
+  takeLatest(actionTypes.AUTHENTICATE_FACEBOOK, authenticateFacebook),
   takeLatest(actionTypes.CREATE, createUser)
 ]
 

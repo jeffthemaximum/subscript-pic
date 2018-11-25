@@ -11,11 +11,27 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  name                   :string(255)
+#  provider               :string(255)
+#  uid                    :string(255)
+#  image                  :text(65535)
+#  provider_type          :integer
 #
 
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable,
+         :omniauthable, :omniauth_providers => [:facebook]
+
+  enum provider: [:facebook]
+
+  def self.from_omniauth(auth, provider)
+    where(provider: provider, uid: auth[:uid]).first_or_create do |user|
+      user.email = auth[:email]
+      user.password = Devise.friendly_token[0,20]
+      user.name = auth[:name]
+      user.image = auth[:image]
+    end
+  end
 end
