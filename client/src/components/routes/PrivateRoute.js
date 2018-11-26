@@ -5,13 +5,13 @@ import {
   Redirect
 } from 'react-router-dom'
 
-import users from '../ducks/users'
+import users from '../../ducks/users'
 
-const { selectors: { userIsSignedIn } } = users
+const { selectors: { userIsSignedIn: userIsSignedInSelector } } = users
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={props => (
-    userIsSignedIn ? (
+    props.userIsSignedIn ? (
       <Component {...props}/>
     ) : (
       <Redirect to={{
@@ -23,7 +23,11 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 )
 
 const mapStateToProps = (state, props) => {
-  return {}
+  const userIsSignedIn = userIsSignedInSelector(state)
+
+  return {
+    userIsSignedIn
+  }
 }
 
 export default connect(mapStateToProps, null, null, {pure: false})(PrivateRoute)

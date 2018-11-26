@@ -40,7 +40,6 @@ export async function authenticateFacebookUser (facebookResponse) {
     }
 
     const user = await axios.request(requestConfig)
-    debugger
 
     return user
   } catch (error) {
